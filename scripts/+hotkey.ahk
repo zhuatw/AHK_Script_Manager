@@ -34,8 +34,7 @@ Return
 
 subTimer:
   IfWinNotActive, %OutputVar%, , WinActivate, %OutputVar%,
-  Return
-
+Return
 ::xtop::
 WinSet, AlwaysOnTop, Off,%OutputVar%
 exitapp 

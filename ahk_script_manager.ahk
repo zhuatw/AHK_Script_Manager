@@ -25,10 +25,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 2015/12/12
 ;ahk-mode 不支持有空格的文件夹，我加了 _ 就 ok
-;原来的 ! 开头，ahk-mode 也不支持，我就改了一行为 $ 的
-
-
+;原来的 ! 开头，ahk-mode 也不支持，我就改成了行首为 $ 的
+;为了spacemacs的esc，我就关闭所有时保留了 CapsLock
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 #Include lib/InsertionSort.ahk
 
 #Persistent
@@ -245,7 +245,7 @@ tsk_closeAll:
     Loop, %scriptCount%
     {
         thisScript := scriptsName%A_Index%
-        if scriptsOpened%A_Index% = 1 ; 已打开
+        if scriptsOpened%A_Index% = 1 and %thisScript% <> "CapsLock.ahk" ;已打开
         {
             WinClose, %thisScript% - AutoHotkey
             scriptsOpened%A_Index% = 0
@@ -265,6 +265,7 @@ Return
 
 ; 重启Manager
 Menu_Tray_Reload:
+::zahk::
     Reload
 Return
 
