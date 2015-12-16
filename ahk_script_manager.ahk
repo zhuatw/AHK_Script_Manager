@@ -265,8 +265,8 @@ Return
 
 ; 重启Manager
 Menu_Tray_Reload:
-::zahk::
-    Reload
+!+a::
+  Reload
 Return
 
 ; 退出
