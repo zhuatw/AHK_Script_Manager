@@ -15,5 +15,7 @@ Run %HOMEPATH%\AppData\Local\liebao\liebao.exe
 
 ;世界之窗
 IfWinNotExist, ahk_exe twchrome.exe
-Run %HOMEPATH%\AppData\Local\TheWorld\Chrome\Application\twchrome.exe
+  Run, twchrome.exe, %HOMEPATH%\AppData\Local\TheWorld\Chrome\Application, max, wPID
+WinWait ahk_pid %wPID%
+MsgBox %wPID%
 Return
