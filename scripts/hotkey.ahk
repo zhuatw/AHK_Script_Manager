@@ -2,7 +2,14 @@
 #NoTrayIcon
 #NoEnv
 
+$CapsLock::Escape
 ;;;;;;;;;;;;;;;;;;;;;;;;
+;;~Escape::^Space
+;;如第一dfdf个esc
+AppsKey::
+Send {Escape}
+Send ^{Space}
+
 ::zclip::
 ClipBoard :=
 Return
@@ -35,6 +42,16 @@ Return
 subTimer:
   IfWinNotActive, %OutputVar%, , WinActivate, %OutputVar%,
 Return
+
 ::xtop::
 WinSet, AlwaysOnTop, Off,%OutputVar%
 exitapp 
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;只复制文件名不含扩展名
+#IfWinActive, ahk_class TTOTAL_CMD
+^3::  ;*** 可以自己设置你想用的快捷键
+Clipboard := ""
+PostMessage, 1075, 2017
+ClipWait, 1
+Clipboard := RegExReplace(Clipboard, "(.+)\..+", "$1")

@@ -2,7 +2,7 @@
 WinGetActiveTitle, Title
 a =[
 b =]
-If Title contains Firefox, Opera,谷歌浏览器,傲游(Maxthon)
+If Title contains Firefox, Opera,Google Chrome,猎豹安全浏览器
 {
   Send !d
   Sleep, 50

@@ -29,16 +29,17 @@ Click,  143,  100
   ; WinWaitActive
 
 ;chrome
-  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://iciba.com/%word%
+  ; Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://iciba.com/%word%
+  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://dict.cn/%word%
   WinWaitActive, ahk_class Chrome_WidgetWin_1
-  WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom/2
+  WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom
 
 ;audacity
   Run, audacity.exe, C:\Program Files (x86)\Audacity\
   WinWaitActive, ahk_class wxWindowClassNR
   WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
   Sleep, 1900 
-  Send #{Down}
+  Send !r
   Sleep, 1430
   Send {R}
 Return

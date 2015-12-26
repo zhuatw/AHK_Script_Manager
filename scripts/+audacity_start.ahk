@@ -8,12 +8,12 @@ WinWaitActive,ahk_class YodaoMainWndClass
 Winmove,ahk_class YodaoMainWndClass,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom/2
 }
 
-IfWinNotExist, ahk_class Chrome_WidgetWin_0
-{
-Run, twchrome.exe, %HOMEPATH%\AppData\Local\TheWorld\Chrome\Application\
-WinWaitActive, ahk_class Chrome_WidgetWin_0
-WinMove, ahk_class Chrome_WidgetWin_0,,0,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
-}
+; IfWinNotExist, ahk_class Chrome_WidgetWin_0
+; {
+; Run, twchrome.exe, %HOMEPATH%\AppData\Local\TheWorld\Chrome\Application\
+; WinWaitActive, ahk_class Chrome_WidgetWin_0
+; WinMove, ahk_class Chrome_WidgetWin_0,,0,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
+; }
 
 IfWinNotExist, ahk_class Chrome_WidgetWin_1
 {
