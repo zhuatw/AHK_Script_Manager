@@ -2,14 +2,15 @@
 #NoTrayIcon
 #NoEnv
 
-$CapsLock::Escape
 ;;;;;;;;;;;;;;;;;;;;;;;;
+$CapsLock::Escape
 ;;~Escape::^Space
-;;如第一dfdf个esc
+;;如第一个esc
 AppsKey::
 Send {Escape}
 Send ^{Space}
 
+;;;;;;;;;;;;;;;;;;;;;;;;
 ::zclip::
 ClipBoard :=
 Return
@@ -27,25 +28,34 @@ Else
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
-::zmute::
+>^Numpad0::
 Send {Volume_Mute}
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
-::ztop::  ;激活并置顶当前窗体，直至，esc退出。
-
-SetTimer subTimer, 500
+>!Up::  ;激活并置顶当前窗体，直至，esc退出。
 WinGetActiveTitle, OutputVar
-WinSet, AlwaysOnTop, On,%OutputVar%
+WinSet, AlwaysOnTop, on, %OutputVar%
+MsgBox, 0, , OnTop, 4
 Return
 
-subTimer:
-  IfWinNotActive, %OutputVar%, , WinActivate, %OutputVar%,
-Return
-
-::xtop::
+>!Down::
+WinGetActiveTitle, OutputVar
 WinSet, AlwaysOnTop, Off,%OutputVar%
-exitapp 
+MsgBox, 0, , OffTop, 4
+Return
+; SetTimer subTimer, 500
+; WinGetActiveTitle, OutputVar
+; WinSet, AlwaysOnTop, On,%OutputVar%
+; Return
+
+; subTimer:
+;   IfWinNotActive, %OutputVar%, , WinActivate, %OutputVar%,
+; Return
+
+; ::xtop::
+; WinSet, AlwaysOnTop, Off,%OutputVar%
+; exitapp 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;只复制文件名不含扩展名
