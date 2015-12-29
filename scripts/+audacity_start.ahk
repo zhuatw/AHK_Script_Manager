@@ -1,18 +1,27 @@
 DetectHiddenWindows, On
 SysGet, Mon1, Monitorworkarea, 1
 
-IfWinNotExist ahk_class TFoxMainFrm.UnicodeClass
-  Run d:\Program Files (x86)\Foxmail\Foxmail.exe
+IfWinNotExist ahk_exe Foxmail.exe
+{
+  Run Foxmail.exe,d:\Program Files (x86)\Foxmail\, ,Min
+  Sleep, 4300
+  WinMinimize
+}
 
 IfWinNotExist ahk_class ahk_class WizNoteMainFrame
-  Run C:\Program Files (x86)\WizNote\Wiz.exe
+{
+  Run Wiz.exe, C:\Program Files (x86)\WizNote\, ,Min
+  WinWaitActive,ahk_class WizNoteMainFrame 
+  Sleep, 4300
+  WinMinimize
+}
 
 IfWinNotExist, ahk_class YodaoMainWndClass
 {
 Run, YodaoDict.exe, %HOMEPATH%\AppData\Local\Youdao\Dict\Application\
 WinWaitActive,ahk_class YodaoMainWndClass
 Winmove,ahk_class YodaoMainWndClass,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom/2
-WinMinimize
+Sleep, 2400
 }
 ; IfWinNotExist, ahk_class Chrome_WidgetWin_100
 ; {
@@ -27,6 +36,7 @@ WinWaitActive, ahk_class Chrome_WidgetWin_1
 WinMove, ahk_class Chrome_WidgetWin_1,0,0,Mon1Right/2,Mon1Bottom/2
 WinMinimize
 }
+Sleep, 4300
 
 IfWinNotExist, ahk_class wxWindowClassNR
 {
@@ -35,6 +45,7 @@ WinWaitActive, ahk_class wxWindowClassNR
 WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
 WinMinimize
 }
+Sleep, 4300
 
 IfWinNotExist, ahk_class Emacs
 {
@@ -43,7 +54,17 @@ WinWaitActive, ahk_class Emacs
 WinMove, ahk_class Emacs,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom
 }
 
-IfWinNotExist, ahk_class TTOTAL_CMD
-  Run, TOTALCMD64.EXE, C:\totalcmd\, ,Max
+Sleep, 1900
+WinMinimizeAll
+
+Sleep, 1900
+
+IfWinNotExist ahk_class TTOTAL_CMD
+  Run C:\totalcmd\TOTALCMD64.EXE
+Else
+  IfWinNotActive ahk_class TTOTAL_CMD
+    WinActivate
+  Else
+    WinMaximize    
 
 Return
