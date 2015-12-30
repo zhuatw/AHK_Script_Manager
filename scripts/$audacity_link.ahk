@@ -4,7 +4,7 @@ DetectHiddenWindows, On
 SetTitleMatchMode, 2
 ::zw::
 SysGet, Mon1, Monitorworkarea, 1
-WinMinimizeAll
+WinMinimize
 
 word = %clipboard% 
 StringLower , word , word
@@ -33,7 +33,7 @@ Sleep, 1900
 ; Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://iciba.com/%word%
 Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://dict.cn/%word%
 WinWaitActive, ahk_class Chrome_WidgetWin_1
-WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom/2
+WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom
 
 ;audacity
   Run, audacity.exe, C:\Program Files (x86)\Audacity\, Min
@@ -48,11 +48,4 @@ WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom/2
   Sleep, 1430
   Send {R}
   Sleep, 1100
-  IfWinNotActive ahk_class TTOTAL_CMD
-  {
-    WinActivate, ahk_class TTOTAL_CMD
-    WinMove, ahk_class TTOTAL_CMD,,0,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
-  }
-  Else
-    WinMove, ahk_class TTOTAL_CMD,,0,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
 Return

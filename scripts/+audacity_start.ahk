@@ -54,7 +54,7 @@ WinWaitActive, ahk_class Emacs
 WinMove, ahk_class Emacs,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom
 }
 
-Sleep, 1900
+Sleep, 4900
 WinMinimizeAll
 
 Sleep, 1900
