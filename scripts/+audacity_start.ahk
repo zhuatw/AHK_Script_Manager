@@ -45,16 +45,7 @@ WinWaitActive, ahk_class wxWindowClassNR
 WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
 WinMinimize
 }
-Sleep, 4300
-
-IfWinNotExist, ahk_class Emacs
-{
-Run, runemacs.exe, C:\Program Files\emacs\bin\, Max
-WinWaitActive, ahk_class Emacs
-WinMove, ahk_class Emacs,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom
-}
-
-Sleep, 4900
+Sleep, 1900
 WinMinimizeAll
 
 Sleep, 1900
@@ -66,5 +57,14 @@ Else
     WinActivate
   Else
     WinMaximize    
+
+  Sleep, 2300
+
+  IfWinNotExist, ahk_class Emacs
+  {
+    Run, runemacs.exe, C:\Program Files\emacs\bin\, Max
+    WinWaitActive, ahk_class Emacs
+    WinMove, ahk_class Emacs,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom
+  }
 
 Return

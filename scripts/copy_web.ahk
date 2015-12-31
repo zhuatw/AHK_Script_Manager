@@ -1,4 +1,4 @@
-#3::                
+>!Right::                
 WinGetActiveTitle, Title
 a =[
 b =]
