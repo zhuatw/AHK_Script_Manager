@@ -1,12 +1,17 @@
 DetectHiddenWindows, On
 SysGet, Mon1, Monitorworkarea, 1
 
-IfWinNotExist ahk_exe Foxmail.exe
+EnvGet, computer_name, COMPUTERNAME
+if (computer_name <> "PC201409101030" )
 {
-  Run Foxmail.exe,d:\Program Files (x86)\Foxmail\, ,Min
-  Sleep, 4300
-  WinMinimize
+Sleep, 1000
 }
+else IfWinNotExist ahk_exe Foxmail.exe
+  {
+    Run Foxmail.exe,d:\Program Files (x86)\Foxmail\, ,Min
+    Sleep, 4300
+    WinMinimize
+  }
 
 IfWinNotExist ahk_class ahk_class WizNoteMainFrame
 {
@@ -21,7 +26,7 @@ IfWinNotExist, ahk_class YodaoMainWndClass
 Run, YodaoDict.exe, %HOMEPATH%\AppData\Local\Youdao\Dict\Application\
 WinWaitActive,ahk_class YodaoMainWndClass
 Winmove,ahk_class YodaoMainWndClass,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom/2
-Sleep, 2400
+Sleep, 4300
 }
 ; IfWinNotExist, ahk_class Chrome_WidgetWin_100
 ; {
@@ -64,7 +69,7 @@ Else
   {
     Run, runemacs.exe, C:\Program Files\emacs\bin\, Max
     WinWaitActive, ahk_class Emacs
-    WinMove, ahk_class Emacs,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom
+    WinMove, ahk_class Emacs,,0,0,Mon1Right/2,Mon1Bottom
   }
 
 Return

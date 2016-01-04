@@ -15,9 +15,9 @@
  Send ^w
  Sleep, 1000
  Send ^n
- Sleep, 2333
+ Sleep, 1000
 ; WinMinimizeAll
- Sleep, 2000
+ Sleep, 1000
  IfWinNotExist ahk_class TTOTAL_CMD
    Run C:\totalcmd\TOTALCMD64.EXE
  Else
@@ -25,7 +25,7 @@
      WinActivate
    Else
      WinMaximize    
- Sleep, 2000
+ Sleep, 1000
   WinActivate, ahk_class Emacs
 ; WinRestore, ahk_class Emacs
  Send {Escape}
