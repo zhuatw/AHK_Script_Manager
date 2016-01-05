@@ -8,14 +8,14 @@ Sleep, 1000
 }
 else IfWinNotExist ahk_exe Foxmail.exe
   {
-    Run Foxmail.exe,d:\Program Files (x86)\Foxmail\, ,Min
+    Run Foxmail.exe, d:\Program Files (x86)\Foxmail\, ,Min
     Sleep, 4300
     WinMinimize
   }
 
 IfWinNotExist ahk_class ahk_class WizNoteMainFrame
 {
-  Run Wiz.exe, C:\Program Files (x86)\WizNote\, ,Min
+  Run Wiz.exe, D:\Program Files (x86)\WizNote\, ,Min
   WinWaitActive,ahk_class WizNoteMainFrame 
   Sleep, 4300
   WinMinimize

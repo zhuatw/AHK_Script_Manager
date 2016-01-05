@@ -15,9 +15,8 @@
  Send ^w
  Sleep, 1000
  Send ^n
- Sleep, 1000
+ Sleep, 2400
 ; WinMinimizeAll
- Sleep, 1000
  IfWinNotExist ahk_class TTOTAL_CMD
    Run C:\totalcmd\TOTALCMD64.EXE
  Else
