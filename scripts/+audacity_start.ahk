@@ -72,4 +72,13 @@ Else
     WinMove, ahk_class Emacs,,0,0,Mon1Right/2,Mon1Bottom
   }
 
+IfWinNotExist, ahk_exe qjvpn.exe
+  {
+    Run qjvpn.exe, C:\Program Files (x86)\qjvpn\
+    Sleep, 1000
+    Send !a
+    Sleep, 1000
+    Send !c
+    Sleep, 10000
+}
 Return
