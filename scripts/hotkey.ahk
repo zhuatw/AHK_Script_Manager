@@ -4,11 +4,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 $CapsLock::Escape
-;;~Escape::^Space
-;;如第一个esc
-AppsKey::
-Send {Escape}
-Send ^{Space}
+; ~Escape::^Space
+; 如第一个esc
+; AppsKey::
+; Send {Escape}
+; Send ^{Space}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ::zclip::
@@ -16,6 +16,12 @@ ClipBoard :=
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
+#k:: Send {Up}
+#j:: Send {Down}
+#h:: Send {Left}
+^!l:: send {Right}
+#':: Send {RButton}
+;;;;;;;;;;;;;;;;;;
 ::ztc::
 DetectHiddenWindows, on
 IfWinNotExist ahk_class TTOTAL_CMD
@@ -26,7 +32,22 @@ Else
   Else
     WinMaximize    
 Return
+;;;;;;;;;;;;;;;;;;;;;;;;
+::zd::
+DetectHiddenWindows, on
+WinActivate ahk_class TTOTAL_CMD
+Send {Down}
+WinActivate ahk_class Emacs 
+Send {Escape}
+Return
 
+::zu::
+DetectHiddenWindows, on
+WinActivate ahk_class TTOTAL_CMD
+Send {Up}
+WinActivate ahk_class Emacs 
+Send {Escape}
+Return
 ;;;;;;;;;;;;;;;;;;;;;;;;
 >^Numpad0::
 Send {Volume_Mute}

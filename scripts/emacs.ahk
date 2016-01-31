@@ -1,5 +1,7 @@
 ;;Autohotkey 中文论坛 - 改进的分半屏显示窗口脚本 WIZ ahk_class Emacs 1920 1036
-#w::
+;#w::
+#SingleInstance Force
+AppsKey::
 DetectHiddenWindows, on
 SysGet, Mon1, Monitorworkarea, 1
 IfWinNotActive ,ahk_class Emacs
@@ -22,5 +24,5 @@ Else
 Else
   WinMove, ahk_class Emacs,,0,0,Mon1Right,Mon1Bottom
 }
-
+Send, {Escape}
 Return

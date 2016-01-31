@@ -1,4 +1,6 @@
+#SingleInstance force
 >!Right::                
+MsgBox, testaaaa
 WinGetActiveTitle, Title
 a =[
 b =]

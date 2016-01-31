@@ -2,7 +2,7 @@ DetectHiddenWindows, On
 SysGet, Mon1, Monitorworkarea, 1
 
 EnvGet, computer_name, COMPUTERNAME
-if (computer_name <> "PC201409101030" )
+if (computer_name <> "PC-20160123FLNQ" )
 {
 Sleep, 1000
 }
@@ -15,7 +15,7 @@ else IfWinNotExist ahk_exe Foxmail.exe
 
 IfWinNotExist ahk_class ahk_class WizNoteMainFrame
 {
-  Run Wiz.exe, D:\Program Files (x86)\WizNote\, ,Min
+  Run Wiz.exe, c:\Program Files (x86)\WizNote\, ,Min
   WinWaitActive,ahk_class WizNoteMainFrame 
   Sleep, 4300
   WinMinimize
