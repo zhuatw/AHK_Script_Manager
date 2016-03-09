@@ -1,17 +1,15 @@
 DetectHiddenWindows, On
 SysGet, Mon1, Monitorworkarea, 1
 
-;;Foxmail 获取计算机名, 住处不开邮件 
-EnvGet, computer_name, COMPUTERNAME
-if (computer_name = "PC-20160123FLNQ" )
+;;liebao
+IfWinNotExist, ahk_class Chrome_WidgetWin_100
 {
-  IfWinNotExist ahk_class TFoxMainFrm.UnicodeClass
-  {
-    Run, d:\Program Files (x86)\Foxmail\Foxmail.exe 
-    WinWaitActive,ahk_class TFoxMainFrm.UnicodeClass
-    Sleep, 6000
-    WinMinimizeAll
-  }
+  Run, C:\Users\Administrator\AppData\Local\liebao\liebao.exe
+  ; http://site.baidu.com/default2.htm
+  WinWaitActive, ahk_class Chrome_WidgetWin_100
+  ;WinMove, ahk_class Chrome_WidgetWin_1,0,0,Mon1Right/2,Mon1Bottom/2
+  Sleep, 14000
+  WinMinimizeAll
 }
 
 ;;vim
@@ -32,6 +30,30 @@ IfWinNotExist ahk_class TTOTAL_CMD
   Sleep, 4000
   WinMinimizeAll
 }
+
+;;audacity
+IfWinNotExist, ahk_class wxWindowClassNR
+{
+  Run, audacity.exe, C:\Program Files (x86)\Audacity\
+  WinWaitActive, ahk_class wxWindowClassNR
+  Sleep, 6000
+  WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
+  WinMinimizeAll
+}
+
+;;Foxmail 获取计算机名, 住处不开邮件 
+EnvGet, computer_name, COMPUTERNAME
+if (computer_name = "PC-20160123FLNQ" )
+{
+  IfWinNotExist ahk_class TFoxMainFrm.UnicodeClass
+  {
+    Run, d:\Program Files (x86)\Foxmail\Foxmail.exe 
+    WinWaitActive,ahk_class TFoxMainFrm.UnicodeClass
+    Sleep, 6000
+    WinMinimizeAll
+  }
+}
+
 ;;youdao
 IfWinNotExist, ahk_class YodaoMainWndClass
 {
@@ -54,28 +76,6 @@ IfWinNotExist, ahk_class YodaoMainWndClass
 ;   Sleep, 4000
 ;   WinMinimizeAll
 ; }
-
-
-;;audacity
-IfWinNotExist, ahk_class wxWindowClassNR
-{
-  Run, audacity.exe, C:\Program Files (x86)\Audacity\
-  WinWaitActive, ahk_class wxWindowClassNR
-  Sleep, 6000
-  WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
-  WinMinimizeAll
-}
-
-;;liebao
-IfWinNotExist, ahk_class Chrome_WidgetWin_100
-{
-  Run, C:\Users\Administrator\AppData\Local\liebao\liebao.exe
-  ; http://site.baidu.com/default2.htm
-  WinWaitActive, ahk_class Chrome_WidgetWin_100
-  ;WinMove, ahk_class Chrome_WidgetWin_1,0,0,Mon1Right/2,Mon1Bottom/2
-  Sleep, 14000
-  WinMinimizeAll
-}
 
 ;;Emacs
 IfWinNotExist, ahk_class Emacs
