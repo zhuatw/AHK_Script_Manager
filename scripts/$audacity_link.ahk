@@ -1,51 +1,51 @@
-;#SingleInstance Force
-#Persistent
-DetectHiddenWindows, On
-SetTitleMatchMode, 2
-::zw::
-SysGet, Mon1, Monitorworkarea, 1
-WinMinimize
+#SingleInstance Force
 
-word = %clipboard% 
-StringLower , word , word
-
-; WinMove, ahk_class YodaoMainWndClass
+;audacity link
+AppsKey & RShift::
+clipboar = %clipboard% 
 
 Send ^+!y
 WinWaitActive,ahk_class YodaoMainWndClass
-Click,  183,  100
-Winmove,ahk_class YodaoMainWndClass,,Mon1Right/2,0,Mon1Right/2,Mon1Bottom/2
-ControlSetText, Edit1, , ahk_class YodaoMainWndClass
-ControlSetText, Edit1, %word%, ahk_class YodaoMainWndClass
-Sleep, 1100
+Send, %clipboard%
+Sleep, 1000
+Send {End}
+Sleep, 1000
 Send {Enter} 
-Sleep, 1900
-; Click,  143,  100
 
-; ;world
-;   Run %HOMEPATH%\AppData\Local\TheWorld\Chrome\Application\twchrome.exe http://dict.cn/%word%
-;   ; WinActivate, ahk_class Chrome_WidgetWin_0
-;   WinMove, ahk_exe twchrome.exe,,0,0,Mon1Right/2,Mon1Bottom/2
-;   ; WinWaitActive
+Run, http://dict.cn/%clipboard%
+Send {Enter} 
+Sleep, 2000
 
+Send, #1
+Sleep, 4000
+Send {R}
+Return
 
-;chrome
-; Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://iciba.com/%word%
-Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe http://dict.cn/%word%
-WinWaitActive, ahk_class Chrome_WidgetWin_1
-WinMove, ahk_class Chrome_WidgetWin_1,,0,0,Mon1Right/2,Mon1Bottom
-
-;audacity
-  Run, audacity.exe, C:\Program Files (x86)\Audacity\, Min
-  WinWaitActive, ahk_class wxWindowClassNR
-  ; WinMove, ahk_class wxWindowClassNR,,Mon1Right/2,Mon1Bottom/2,Mon1Right/2,Mon1Bottom/2
-  Sleep, 430
-  Send !{Space}
-  Sleep, 430
-  Send {r]
-  Sleep, 1900 
-  Send !r
-  Sleep, 1430
-  Send {R}
-  Sleep, 1100
+;audacity save
+;#IfWinActive ahk_class wxWindowClassNR
+^Numpad0::
+Send, #1
+Send {Space}
+Sleep, 2000
+Send ^+e
+Sleep, 2000
+;Send, %clipboard% 
+;ControlSetText, Edit1, %clipboard% 
+ControlSetText, Edit1, %clipboard%, ahk_exe audacity.exe
+    IfWinActive, 警告
+    {
+      Send, !n
+      Exit
+    }
+Sleep, 2000
+Send !s
+Sleep, 2000
+Send ^w
+Sleep, 2000
+Send !n
+Sleep, 2000
+WinMinimizeAll
+Sleep, 1000
+WinActivate, ahk_class Emacs
+clipboard =
 Return

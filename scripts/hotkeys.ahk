@@ -3,14 +3,130 @@
 ;zhua'''''''''''''''''''''''
 $CapsLock::Escape
 
+AppsKey & k::
+Send {Up}
+Return
+
+AppsKey & j::
+Send {Down}
+Return
+
+AppsKey & h::
+Send {Left}
+Return
+
+AppsKey & l::
+send {Right}
+Return
+
+AppsKey & p::
+Send {F7}
+Return
+
+AppsKey & n::
+Send {F8}
+Return
+
 AppsKey & LShift::
 Send #{Left}
+Return
+
+AppsKey & F1::
+WinMaximize, A
+Return
+
+AppsKey & F2::
+WinMinimize, A
+Return
+
+AppsKey & F3::
+Send, {Home}
+Return
+
+AppsKey & F4::
+Send, {End}
+Return
+
+AppsKey & F7::
+Send, {home}+{end}{Delete}
+ClipWait, 0
+Return
+
+AppsKey & F8::
+Send, {home}+{end}^c
+ClipWait, 0
+Return
+
+^Numpad0::
+SoundSet, +1, ,mute
 Return
 
 ;Emacs
 AppsKey & LControl::
 Sleep, 430
 WinActivate, ahk_class Emacs
+Return
+
+;gvim
+AppsKey & LAlt::
+Sleep, 430
+WinActivate, ahk_class Vim
+Return
+
+;;;audacity link
+AppsKey & F5::
+clipboar = %clipboard% 
+
+Send ^+!y
+WinWaitActive,ahk_class YodaoMainWndClass
+Send, %clipboard%
+Sleep, 1000
+Send {End}
+Sleep, 1000
+Send {Enter} 
+
+Run, http://dict.cn/%clipboard%
+Send {Enter} 
+Sleep, 3000
+
+Send, #1
+Sleep, 4000
+Send {R}
+Return
+
+;;;audacity save
+AppsKey & F6::
+Send, #1
+Send {Space}
+Sleep, 2000
+Send ^+e
+Sleep, 2000
+ControlSetText, Edit1, %clipboard%, ahk_exe audacity.exe
+IfWinActive, 警告
+{
+  Send, !n
+  Exit
+}
+Sleep, 2000
+Send !s
+Sleep, 2000
+Send ^w
+Sleep, 2000
+Send !n
+Sleep, 2000
+WinMinimizeAll
+Sleep, 1000
+WinActivate, ahk_class Emacs
+clipboard =
+Return
+
+;;yuodao
+AppsKey & RShift::
+Send ^+!d
+Return
+
+AppsKey & RAlt::
+Send {AppSkey}
 Return
 
 ;wzi emacs
@@ -25,12 +141,6 @@ Send {e}
 Send {Enter} 
 Return
 
-;gvim
-AppsKey & LAlt::
-Sleep, 430
-WinActivate, ahk_class Vim
-Return
-
 ;wzi gvim
 AppsKey & v::
 IfWinNotExist, ahk_class WizNoteMainFrame
@@ -43,7 +153,7 @@ Send {g}
 Send {Enter} 
 Return
 
-;wzi folder Control
+;wzi folder
 AppsKey & f::
 IfWinNotExist, ahk_class WizNoteMainFrame
   Send ^!m
@@ -51,12 +161,15 @@ WinActivate, ahk_class WizNoteMainFrame
 ControlFocus, CWizMultiSelectTreeCtrl1, ahk_class WizNoteMainFrame
 Return
 
+;wzi list
 AppsKey & t::
 IfWinNotExist, ahk_class WizNoteMainFrame
   Send ^!m
 WinActivate, ahk_class WizNoteMainFrame
 ControlFocus, WizListCtrl1, ahk_class WizNoteMainFrame
 Return
+
+;;^!v clipboard wiz new file
 
 ;wzi Delete file
 AppsKey & d::
@@ -73,7 +186,6 @@ IfWinNotExist, ahk_class WizNoteMainFrame
   Send ^!m
 WinActivate, ahk_class WizNoteMainFrame
 Sleep, 400
-;;;;;;;;;;;;;;;;;;;Control table
 ControlClick, x312 y123, ahk_class WizNoteMainFrame
 Send, +{End}
 Return
@@ -93,7 +205,7 @@ Send, {Delete}
 Return
 
 ;wzi wait search file
-AppsKey & z::
+AppsKey & w::
 IfWinNotExist, ahk_class WizNoteMainFrame
   Send ^!m
 WinActivate, ahk_class WizNoteMainFrame
@@ -103,71 +215,19 @@ Send, {Delete}
 Send, {Enter}
 Return
 
-AppsKey & k::
-Send {Up}
-Return
-
-AppsKey & j::
-Send {Down}
-Return
-
-AppsKey & h::
-Send {Left}
-Return
-
-AppsKey & l::
-send {Right}
-Return
-
-AppsKey & n::
-Send {F8}
-Return
-
-AppsKey & p::
-Send {F7}
-Return
-
-AppsKey & RAlt::
-Send {AppSkey}
-Return
-
-; AppsKey & m::
-; IfWinNotExist, ahk_class WizNoteMainFrame
-;   Send ^!m
-; WinActivate, ahk_class WizNoteMainFrame
-; ControlFocus, WizToolBar1, ahk_class WizNoteMainFrame
-; ControlGetPos, x, y
-; MouseMove, x+180, y+480 
-; Return
-
-; AppsKey & c::
-; MouseClick, Right
-; Return
-
-; AppsKey & m::
-; IfWinNotExist, ahk_class WizNoteMainFrame
-;   Send ^!m
-; WinActivate, ahk_class WizNoteMainFrame
-; Send, !d 
-; Send, wzi files index{Enter}
-; Sleep, 4300
-; ControlClick, WizToolBar3, ahk_class WizNoteMainFrame,,,, NA x74 y19
-; Sleep, 2000
-; Send {g}
-; Send {Enter} 
-; Sleep, 3000
-; Return
-
+;;;;;;;;;;;;;;;;; web page for orgmode
 #IfWinActive ahk_class Chrome_WidgetWin_100
 {
-    AppsKey & w::
-    Send !d
-    Sleep, 1000
-    Send ^c
-    Sleep, 1000
-    WinGetActiveTitle, Title
-    Sleep, 1000
-    clipboard = %Title%`r`n[[%clipboard% ]]
-    WinActivate, ahk_class Vim 
-    Return
+  AppsKey & w::
+  Send,!d 
+  Sleep, 400
+  clipboard =
+  Send, ^c
+  ClipWait
+  WinGetActiveTitle, Title
+  Sleep, 1000
+  StringTrimRight, Title, Title, 18
+  clipboard = %Title%`r`n[[%clipboard% ]]
+  WinActivate, ahk_class Vim 
+  Return
 }
