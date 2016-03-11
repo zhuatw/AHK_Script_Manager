@@ -187,7 +187,21 @@ IfWinNotExist, ahk_class WizNoteMainFrame
 WinActivate, ahk_class WizNoteMainFrame
 Sleep, 400
 ControlClick, x312 y123, ahk_class WizNoteMainFrame
-Send, +{End}
+;Send, +{End}
+Return
+
+;wzi copy name
+AppsKey & c::
+IfWinNotExist, ahk_class WizNoteMainFrame
+  Send ^!m
+WinActivate, ahk_class WizNoteMainFrame
+Sleep, 400
+ControlClick, x312 y123, ahk_class WizNoteMainFrame
+Send, ^c
+ClipWait
+Send, {End}
+Sleep, 1000
+WinActivate, ahk_class Emacs
 Return
 
 ;wzi search file
@@ -218,6 +232,20 @@ Return
 ;;;;;;;;;;;;;;;;; web page for orgmode
 #IfWinActive ahk_class Chrome_WidgetWin_100
 {
+  ;;wait
+  AppsKey & t::
+  Send,!d 
+  Sleep, 400
+  clipboard =
+  Send, ^c
+  ClipWait
+  WinGetActiveTitle, Title
+  Sleep, 1000
+  StringTrimRight, Title, Title, 9
+  clipboard = %Title%`r`n[[%clipboard% ]]
+  Return
+
+  ;;wiz
   AppsKey & w::
   Send,!d 
   Sleep, 400
@@ -226,8 +254,25 @@ Return
   ClipWait
   WinGetActiveTitle, Title
   Sleep, 1000
-  StringTrimRight, Title, Title, 18
+  StringTrimRight, Title, Title, 9
+  clipboard = %Title%`r`nwzi`r`n[[%clipboard% ]]
+  Sleep, 1000
+  Send, ^!v
+  Return
+
+  ;;collect
+  AppsKey & c::
+  Send,!d 
+  Sleep, 400
+  clipboard =
+  Send, ^c
+  ClipWait
+  WinGetActiveTitle, Title
+  Sleep, 1000
+  StringTrimRight, Title, Title, 9
   clipboard = %Title%`r`n[[%clipboard% ]]
-  WinActivate, ahk_class Vim 
+  Sleep, 1000
+  Send, ^!v
+  ;WinActivate, ahk_class Vim 
   Return
 }
