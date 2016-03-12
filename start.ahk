@@ -23,7 +23,7 @@ IfWinNotExist ahk_class Vim
   WinWaitActive, ahk_class Vim
   Sleep, 4000
   Send, #{Right}
-  Sleep, 2000
+  Sleep, 3000
   WinMinimize, A
 }
 
@@ -35,7 +35,7 @@ if (computer_name = "PC-20160123FLNQ" )
     Run, d:\Program Files (x86)\Foxmail\Foxmail.exe 
     WinWaitActive,ahk_class TFoxMainFrm.UnicodeClass
     Sleep, 6000
-    WinMinimize, A
+    Send, !{F4} 
   }
 }
 
@@ -58,7 +58,7 @@ IfWinNotExist, ahk_class Chrome_WidgetWin_100
   Sleep, 14000
 ;  WinMove, A, , ,Mon1Right/2 ,0 ,Mon1Right/2 ,Mon1Bottom
   Send, #{Right}
-  Sleep, 1000
+  Sleep, 2000
   WinMinimize, A
 }
 
@@ -79,10 +79,10 @@ IfWinNotExist, ahk_class Emacs
   {
     Run, runemacs.exe, C:\Program Files\emacs\bin\
     WinWaitActive, ahk_class Emacs
-    Sleep, 14000
+    Sleep, 20000
 ;    WinMove, ,A , ,0 ,0 ,Mon1Right/2 ,Mon1Bottom
     Send #{Left}
-    Sleep, 2300
+    Sleep, 4300
     WinMinimize, A
   }
 
@@ -93,7 +93,7 @@ IfWinNotExist ahk_class ahk_class WizNoteMainFrame
   WinWaitActive,ahk_class WizNoteMainFrame 
   Sleep, 14000
   WinMove, A, , ,Mon1Right/2 ,0 ,Mon1Right/2 ,Mon1Bottom
-  Sleep, 4000
+  Sleep, 8000
   Send, {F9}
 }
 Return
