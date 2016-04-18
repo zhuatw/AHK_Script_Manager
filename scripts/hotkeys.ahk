@@ -1,4 +1,5 @@
 ﻿#SingleInstance, Force
+SetWinDelay, Delay
 
 ;zhua'''''''''''''''''''''''
 $CapsLock::Escape
@@ -47,12 +48,12 @@ AppsKey & F4::
 Send, {End}
 Return
 
-AppsKey & F7::
+AppsKey & F5::
 Send, {home}+{end}{Delete}
 ClipWait, 0
 Return
 
-AppsKey & F8::
+AppsKey & F6::
 Send, {home}+{end}^c
 ClipWait, 0
 Return
@@ -74,7 +75,7 @@ WinActivate, ahk_class Vim
 Return
 
 ;;;audacity link
-AppsKey & F5::
+AppsKey & F7::
 clipboar = %clipboard% 
 
 Send ^+!y
@@ -95,7 +96,7 @@ Send {R}
 Return
 
 ;;;audacity save
-AppsKey & F6::
+AppsKey & F8::
 Send, #1
 Send {Space}
 Sleep, 2000
@@ -216,6 +217,8 @@ Send, ^v{Enter}
 Sleep, 1430
 Send, !d 
 Send, {Delete} 
+ControlFocus, CWizMultiSelectTreeCtrl1, ahk_class WizNoteMainFrame
+Send, {Left}{PgDn}{Up}{Right} 
 Return
 
 ;wzi wait search file
@@ -229,11 +232,25 @@ Send, {Delete}
 Send, {Enter}
 Return
 
+;wzi clear search file view
+#IfWinActive ahk_class WizNoteMainFrame
+{
+  AppsKey & c::
+  IfWinNotExist, ahk_class WizNoteMainFrame
+    Send ^!m
+  WinActivate, ahk_class WizNoteMainFrame
+  Send, !d 
+  Send, {Delete} 
+  ControlFocus, CWizMultiSelectTreeCtrl1, ahk_class WizNoteMainFrame
+  Send, {Left}{PgDn}{Up}{Right} 
+  Return
+}
+
 ;;;;;;;;;;;;;;;;; web page for orgmode
 #IfWinActive ahk_class Chrome_WidgetWin_100
 {
-  ;;wait
-  AppsKey & t::
+  ;;emacs
+  AppsKey & e::
   Send,!d 
   Sleep, 400
   clipboard =
@@ -242,7 +259,9 @@ Return
   WinGetActiveTitle, Title
   Sleep, 1000
   StringTrimRight, Title, Title, 9
-  clipboard = %Title%`r`n[[%clipboard% ]]
+  clipboard = %Title%`r`n[[%clipboard%]]
+  Sleep, 1000
+  WinActivate, ahk_class Emacs 
   Return
 
   ;;wiz
@@ -255,13 +274,13 @@ Return
   WinGetActiveTitle, Title
   Sleep, 1000
   StringTrimRight, Title, Title, 9
-  clipboard = %Title%`r`nwzi`r`n[[%clipboard% ]]
+  clipboard = %Title%`r`nwzi`r`n[[%clipboard%]]
   Sleep, 1000
   Send, ^!v
   Return
 
-  ;;collect
-  AppsKey & c::
+  ;;vim collect
+  AppsKey & v::
   Send,!d 
   Sleep, 400
   clipboard =
@@ -270,9 +289,8 @@ Return
   WinGetActiveTitle, Title
   Sleep, 1000
   StringTrimRight, Title, Title, 9
-  clipboard = %Title%`r`n[[%clipboard% ]]
+  clipboard = %Title%`r`n[[%clipboard%]]
   Sleep, 1000
-  Send, ^!v
-  ;WinActivate, ahk_class Vim 
+  WinActivate, ahk_class Vim 
   Return
 }

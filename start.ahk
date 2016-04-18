@@ -10,7 +10,7 @@ run, c:\Users\%A_UserName%\vimdesktop\vimd.ahk
 ;;tc
 IfWinNotExist ahk_class TTOTAL_CMD
 {
-  Run C:\totalcmd\TOTALCMD64.EXE
+  Run C:\totalcmd\TOTALCMD.EXE
   WinWaitActive, ahk_class TTOTAL_CMD
   Sleep, 5000
   WinMinimize, A
