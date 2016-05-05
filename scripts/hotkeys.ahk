@@ -2,7 +2,8 @@
 SetWinDelay, Delay
 
 ;zhua'''''''''''''''''''''''
-$CapsLock::Escape
+CapsLock::Escape
+AppSkey::RControl
 
 AppsKey & k::
 Send {Up}
@@ -265,7 +266,7 @@ Return
   Return
 
   ;;wiz
-  AppsKey & w::
+  AppsKey & Right::
   Send,!d 
   Sleep, 400
   clipboard =
@@ -274,7 +275,8 @@ Return
   WinGetActiveTitle, Title
   Sleep, 1000
   StringTrimRight, Title, Title, 9
-  clipboard = %Title%`r`nwzi`r`n[[%clipboard%]]
+  ;clipboard = %Title%`r`nwzi`r`n[[%clipboard%]]
+  clipboard = %Title%`r`n`r`n[[%clipboard%]]
   Sleep, 1000
   Send, ^!v
   Return
