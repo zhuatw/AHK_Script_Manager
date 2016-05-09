@@ -3,7 +3,11 @@ SetWinDelay, Delay
 
 ;zhua'''''''''''''''''''''''
 CapsLock::Escape
-AppSkey::RControl
+
+Appskey::RCtrl
+; Appskey & CapsLock::
+; Send {RCtrl} {Escape}
+; Return
 
 AppsKey & k::
 Send {Up}
@@ -266,6 +270,7 @@ Return
   Return
 
   ;;wiz
+  AppsKey & w::
   AppsKey & Right::
   Send,!d 
   Sleep, 400
@@ -295,4 +300,30 @@ Return
   Sleep, 1000
   WinActivate, ahk_class Vim 
   Return
+}
+
+#IfWinActive ahk_class Emacs
+{
+  AppsKey & t::
+  IfWinNotExist ahk_class TTOTAL_CMD
+    Run c:\totalcmd\TOTALCMD.EXE
+  Else
+    IfWinNotActive ahk_class TTOTAL_CMD
+      WinActivate
+    Else
+		WinMinimize
+  Return    
+}
+
+#IfWinActive ahk_class Vim
+{
+  AppsKey & t::
+  IfWinNotExist ahk_class TTOTAL_CMD
+    Run c:\totalcmd\TOTALCMD.EXE
+  Else
+    IfWinNotActive ahk_class TTOTAL_CMD
+      WinActivate
+    Else
+      WinMinimize
+      Return    
 }
